@@ -1,0 +1,10 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Kevin Boutin -- Owner / Developer / Designer -- @kevboutin
+
+# TECHNOLOGY COLOPHON
+
+  CSS3, HTML5, JS, jQuery, Modernizr, Owl Carousel, Stellar, Magnific Popup

@@ -43,13 +43,13 @@ body {
 }
 
 a {
-  color: #f68459;
+  color: #f6a170;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
 a:hover, a:active, a:focus {
-  color: #f68459;
+  color: #f6a170;
   outline: none;
   text-decoration: none;
 }
@@ -67,17 +67,17 @@ h1, h2, h3, h4, h5, h6, figure {
 
 ::-webkit-selection {
   color: #fff;
-  background: #f68459;
+  background: #f6a170;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #f68459;
+  background: #f6a170;
 }
 
 ::selection {
   color: #fff;
-  background: #f68459;
+  background: #f6a170;
 }
 
 .iak-nav {
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
 }
 .iak-nav ul li.btn-cta a {
-  color: #f68459;
+  color: #f6a170;
 }
 .iak-nav ul li.btn-cta a span {
   background: #fff;
@@ -764,7 +764,7 @@ h1, h2, h3, h4, h5, h6, figure {
   display: inline-block;
   zoom: 1;
   *display: inline;
-  color: #f68459;
+  color: #f6a170;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -783,7 +783,7 @@ h1, h2, h3, h4, h5, h6, figure {
   position: relative;
 }
 .iak-contact-info ul li:before {
-  color: #f68459;
+  color: #f6a170;
   position: absolute;
   left: 0;
   top: .05em;
@@ -875,7 +875,7 @@ form label {
 .iak-cover .display-tc .btn {
   padding: 15px 20px;
   background: #fff !important;
-  color: #f68459;
+  color: #f6a170;
   border: none !important;
   font-size: 14px;
   text-transform: uppercase;
@@ -1040,7 +1040,7 @@ form label {
   font-size: 20px;
   background: #fff;
   padding: 20px;
-  color: #f68459;
+  color: #f6a170;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -1063,7 +1063,7 @@ form label {
 }
 .couple-half h3 {
   font-family: "Sacramento", Arial, serif;
-  color: #f68459;
+  color: #f6a170;
   font-size: 30px;
 }
 .couple-half .groom, .couple-half .bride {
@@ -1156,7 +1156,7 @@ form label {
   height: 90px;
   font-size: 40px;
   line-height: 40px;
-  color: #f68459;
+  color: #f6a170;
 }
 .feature-center p, .feature-center h3 {
   margin-bottom: 30px;
@@ -1178,7 +1178,7 @@ form label {
   margin-bottom: 10px;
   line-height: 1.5;
   font-weight: bold;
-  color: #f68459;
+  color: #f6a170;
   font-family: "Sacramento", Arial, serif;
 }
 @media screen and (max-width: 768px) {
@@ -1213,7 +1213,7 @@ form label {
   display: block;
 }
 #iak-testimonial .wrap-testimony .testimony-slide span a.twitter {
-  color: #f68459;
+  color: #f6a170;
   font-weight: 300;
 }
 #iak-testimonial .wrap-testimony .testimony-slide figure {
@@ -1305,7 +1305,7 @@ form label {
   display: table-cell;
   vertical-align: middle;
   font-size: 30px;
-  color: #f68459;
+  color: #f6a170;
 }
 .feature-left .feature-copy {
   float: left;
@@ -1371,7 +1371,7 @@ form label {
 #iak-started .btn {
   height: 54px;
   border: none !important;
-  background: #f68459;
+  background: #f6a170;
   color: #fff;
   font-size: 16px;
   text-transform: uppercase;
@@ -1413,7 +1413,7 @@ form label {
 }
 .owl-carousel .owl-controls .owl-dot.active span {
   background: transparent;
-  border: 2px solid #f68459;
+  border: 2px solid #f6a170;
 }
 
 #iak-offcanvas {
@@ -1666,9 +1666,9 @@ form label {
 }
 
 .btn-primary {
-  background: #f68459;
+  background: #f6a170;
   color: #fff;
-  border: 2px solid #f68459;
+  border: 2px solid #f6a170;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background: #f36321 !important;
@@ -1676,11 +1676,11 @@ form label {
 }
 .btn-primary.btn-outline {
   background: transparent;
-  color: #f68459;
-  border: 2px solid #f68459;
+  color: #f6a170;
+  border: 2px solid #f6a170;
 }
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-  background: #f68459;
+  background: #f6a170;
   color: #fff;
 }
 
@@ -1810,7 +1810,7 @@ form label {
 .form-control:active, .form-control:focus {
   outline: none;
   box-shadow: none;
-  border-color: #f68459;
+  border-color: #f6a170;
 }
 
 .row-pb-md {

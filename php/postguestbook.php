@@ -16,10 +16,9 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendees']))) {
-	$email = sanitize_sql_string($_POST['email']);
+if (isset($_POST['name']) && (isset($_POST['message']))) {
+	$message = sanitize_sql_string($_POST['message']);
 	$name = sanitize_sql_string($_POST['name']);
-	$attendees = $_POST['attendees'];
 	$errors = '';
 	if (is_numeric($attendees)) {
 		$attendees = sanitize_int($attendees);
@@ -32,14 +31,8 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 	if (strlen($name) < 2) {
 		$errors .= 'Name is too short.<br/>';
 	}
-	if (strlen($email) > 100) {
-		$errors .= 'Email is too long.<br/>';
-	}
-	if (strlen($email) < 5) {
-		$errors .= 'Email is too short.<br/>';
-	}
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$errors .= 'Email is not valid.<br/>';
+	if (strlen($message) > 2024) {
+		$errors .= 'Message is too long.<br/>';
 	}
 
 	if (empty($errors)) {
@@ -56,20 +49,18 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 
 	if (!$fp)
 	{
-		echo "<p><strong> Your Addition to the RSVP list could not be processed at this time.  "
+		echo "<p><strong> Your Addition to the Guestbook could not be processed at this time.  "
 			."Please try again in a few minutes.</strong></p>";
 		exit;
 	}
 
-	fwrite($fp, "rsvp {'name': '".$name."', 'email': '".$email."', 'attendees': ".$attendees."}\n");
+	fwrite($fp, "wishes {'name': '".$name."', 'message': '".$message."'}\n");
 	flock($fp, 3);
 	fclose($fp);
 
-	$sql1 = "INSERT INTO iandk_rsvp(name, email, attendees, created, updated) VALUES ('" . $name . "', '" . $email .
-		"', ". $attendees . ", NOW(), NOW()) ON DUPLICATE KEY UPDATE updated=NOW(), attendees=". $attendees .
-		", name='" . $name . "'";
+	$sql1 = "INSERT INTO iandk_wishes(name, platform, message, created, updated) VALUES ('" . $name . "', 'web', '".
+		$message . "', NOW(), NOW())";
 
-	$result1 = mysqli_query($conn, $sql1) or die ("Unable to save RSVP values of " . $email . ", " . $name . " and "
-		. $attendees);
+	$result1 = mysqli_query($conn, $sql1) or die ("Unable to save wish values of " . $message . " and " . $name);
 }
 ?>

@@ -48,6 +48,6 @@ http://dimsemenov.com/plugins/magnific-popup/
 ### SimplyCountDown JS
 http://vincentloy.github.io/simplyCountdown.js/
 
-### Demo Images:
+### Demo Images
 http://unsplash.com
 

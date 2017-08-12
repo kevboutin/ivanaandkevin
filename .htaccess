@@ -1,0 +1,18 @@
+# disable directory browsing
+Options All -Indexes
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www.ivanaandkevin.com [NC]
+RewriteRule ^(.*)$ http://ivanaandkevin.com/$1 [L,R=301]
+
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+</Files>
+
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>

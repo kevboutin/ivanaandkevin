@@ -1,9 +1,7 @@
 ;(function () {
-	
 	'use strict';
 
 	var mobileMenuOutsideClick = function() {
-
 		$(document).click(function (e) {
 	    var container = $("#iak-offcanvas, .js-iak-nav-toggle");
 	    if (!container.is(e.target) && container.has(e.target).length === 0) {
@@ -15,11 +13,9 @@
 	    	}
 	    }
 		});
-
 	};
 
 	var offcanvasMenu = function() {
-
 		$('#page').prepend('<div id="iak-offcanvas" />');
 		$('#page').prepend('<a href="#" class="js-iak-nav-toggle iak-nav-toggle iak-nav-white"><i></i></a>');
 		var clone1 = $('.menu-1 > ul').clone();
@@ -56,13 +52,12 @@
 
     			$('body').removeClass('offcanvas');
     			$('.js-iak-nav-toggle').removeClass('active');
-				
+
 	    	}
 		});
 	};
 
 	var burgerMenu = function() {
-
 		$('body').on('click', '.js-iak-nav-toggle', function(event){
 			var $this = $(this);
 
@@ -81,15 +76,11 @@
 	var contentWayPoint = function() {
 		var i = 0;
 		$('.animate-box').waypoint( function( direction ) {
-
 			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
 				i++;
-
 				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .animate-box.item-animate').each(function(k){
+				setTimeout(function() {
+					$('body .animate-box.item-animate').each(function(k) {
 						var el = $(this);
 						setTimeout( function () {
 							var effect = el.data('animate-effect');
@@ -106,37 +97,29 @@
 							el.removeClass('item-animate');
 						},  k * 200, 'easeInOutExpo' );
 					});
-					
 				}, 100);
-				
 			}
-
 		} , { offset: '85%' } );
 	};
 
 
 	var dropdown = function() {
-
-		$('.has-dropdown').mouseenter(function(){
-
+		$('.has-dropdown').mouseenter(function() {
 			var $this = $(this);
 			$this
 				.find('.dropdown')
 				.css('display', 'block')
 				.addClass('animated-fast fadeInUpMenu');
-
 		}).mouseleave(function(){
 			var $this = $(this);
-
 			$this
 				.find('.dropdown')
 				.css('display', 'none')
 				.removeClass('animated-fast fadeInUpMenu');
 		});
-
 	};
 
-	var testimonialCarousel = function(){
+	var testimonialCarousel = function() {
 		var owl = $('.owl-carousel-fullwidth');
 		owl.owlCarousel({
 			items: 1,
@@ -151,29 +134,24 @@
 	};
 
 	var goToTop = function() {
-
-		$('.js-gotop').on('click', function(event){
-			
+		$('.js-gotop').on('click', function(event) {
 			event.preventDefault();
 
 			$('html, body').animate({
 				scrollTop: $('html').offset().top
 			}, 500, 'easeInOutExpo');
-			
+
 			return false;
 		});
 
-		$(window).scroll(function(){
-
+		$(window).scroll(function() {
 			var $win = $(window);
 			if ($win.scrollTop() > 200) {
 				$('.js-top').addClass('active');
 			} else {
 				$('.js-top').removeClass('active');
 			}
-
 		});
-	
 	};
 
 	// Loading page
@@ -192,7 +170,6 @@
 	var counterWayPoint = function() {
 		if ($('#iak-counter').length > 0 ) {
 			$('#iak-counter').waypoint( function( direction ) {
-										
 				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
 					setTimeout( counter , 400);
 					$(this.element).addClass('animated');
@@ -206,7 +183,33 @@
 		$(window).stellar();
 	};
 
-	$(function(){
+	// RSVP form
+	$("#btn-attend").click(function (event) {
+		event.preventDefault();
+		$("#rsvp-message").empty();
+		var name = $('#name').val();
+		var email = $('#email').val();
+		var people = $('#people').val();
+
+		$.ajax({
+			method: 'POST',
+			url: './php/postrsvp.php',
+			data: {name: name, email: email, attendees: people}
+		}).success(function () {
+			if (people && !isNaN(people) && people > 1) {
+				$("#rsvp-message").append($("<br/>Thank you for your RSVP with " + people + " people.<br/>").fadein(300));
+			} else {
+				$("#rsvp-message").append($("<br/>Thank you for your RSVP.<br/>").fadein(300));
+			}
+			$("#name").val("");
+			$("#email").val("");
+			$("#people").val("");
+		}).error(function (jqXhr, textStatus, errorMessage) {
+			$("#rsvp-message").append($("<br/>Error: " + errorMessage + "<br/>").fadein(300));
+		});
+	});
+
+	$(function() {
 		mobileMenuOutsideClick();
 		parallax();
 		offcanvasMenu();
@@ -219,6 +222,4 @@
 		counter();
 		counterWayPoint();
 	});
-
-
 }());

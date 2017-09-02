@@ -209,6 +209,26 @@
 		});
 	});
 
+	// Wishes form
+	$("#btn-wishes").click(function (event) {
+		event.preventDefault();
+		$("#wishes-message").empty();
+		var name = $('#namewishes').val();
+		var message = $('#message').val();
+
+		$.ajax({
+			method: 'POST',
+			url: './php/postguestbook.php',
+			data: {name: name, message: message}
+		}).success(function () {
+			$("#wishes-message").append($("<br/>Thank you for your message.<br/>").fadein(300));
+			$("#namewishes").val("");
+			$("#message").val("");
+		}).error(function (jqXhr, textStatus, errorMessage) {
+			$("#wishes-message").append($("<br/>Error: " + errorMessage + "<br/>").fadein(300));
+		});
+	});
+
 	$(function() {
 		mobileMenuOutsideClick();
 		parallax();

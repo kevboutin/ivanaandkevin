@@ -1,9 +1,4 @@
 <?php
-
-if(!defined('IN_GB')) {
-   die('Direct access not permitted');
-}
-
 /*
  * Copyright (c) 2002,2003 Free Software Foundation
  * developed under the custody of the
@@ -11,16 +6,16 @@ if(!defined('IN_GB')) {
  * (http://www.owasp.org)
  *
  * This file is part of the PHP Filters.
- * PHP Filters is free software; you can redistribute it and/or modify it 
+ * PHP Filters is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * PHP Filters is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * If you are not able to view the LICENSE, which should
  * always be possible within a valid and working PHP Filters release,
  * please write to the Free Software Foundation, Inc.,

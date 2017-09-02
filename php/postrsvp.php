@@ -1,19 +1,18 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: kevinboutin
  * Date: 8/12/17
  * Time: 1:54 PM
  */
-include('../includes/dbconfig.php');
-include('../includes/sanitize.php');
+include '../includes/dbconfig.php';
+include '../includes/sanitize.php';
 
 // Create connection
-$conn = mysqli_connect($IK_DB['host'], $IK_DB['user'], $IK_DB['pass']);
+$conn = mysqli_connect($IK_DB['host'], $IK_DB['user'], $IK_DB['pass'], $IK_DB['dbName']);
 
 // Check connection
 if (!$conn) {
-	die("Connection failed: " . mysqli_connect_error());
+	die('Connection failed: ' . mysqli_connect_error());
 }
 
 if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendees']))) {
@@ -24,44 +23,44 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 	if (is_numeric($attendees)) {
 		$attendees = sanitize_int($attendees);
 	} else {
-		$errors .= 'Number of attendees is not numeric.<br/>';
+		$errors .= 'Number of attendees is not numeric. ';
 	}
 	if (strlen($name) > 60) {
-		$errors .= 'Name is too long.<br/>';
+		$errors .= 'Name is too long. ';
 	}
 	if (strlen($name) < 2) {
-		$errors .= 'Name is too short.<br/>';
+		$errors .= 'Name is too short. ';
 	}
 	if (strlen($email) > 100) {
-		$errors .= 'Email is too long.<br/>';
+		$errors .= 'Email is too long. ';
 	}
 	if (strlen($email) < 5) {
-		$errors .= 'Email is too short.<br/>';
+		$errors .= 'Email is too short. ';
 	}
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$errors .= 'Email is not valid.<br/>';
+		$errors .= 'Email is not valid. ';
 	}
 
 	if (empty($errors)) {
-		echo "{'status': 'success'}";
+		echo '{"status": "success"}';
 	} else {
-		echo "{'status': 'error', 'errors': '" . $errors . "'}";
+		echo '{"status": "error", "errors": "' . $errors . '"}';
 		exit;
 	}
 
 	// open file for appending
-	@ $fp = fopen("list.txt", "a");
+	@ $fp = fopen('list.txt', 'a');
 
 	flock($fp, 2);
 
 	if (!$fp)
 	{
-		echo "<p><strong> Your Addition to the RSVP list could not be processed at this time.  "
-			."Please try again in a few minutes.</strong></p>";
+		echo '<p><strong> Your Addition to the RSVP list could not be processed at this time. '
+			. 'Please try again in a few minutes.</strong></p>';
 		exit;
 	}
 
-	fwrite($fp, "rsvp {'name': '".$name."', 'email': '".$email."', 'attendees': ".$attendees."}\n");
+	fwrite($fp, 'rsvp {"name": "'.$name.'", "email": "'.$email.'", "attendees": '.$attendees.'}');
 	flock($fp, 3);
 	fclose($fp);
 

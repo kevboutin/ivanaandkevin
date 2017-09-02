@@ -197,15 +197,15 @@
 			data: {name: name, email: email, attendees: people}
 		}).success(function () {
 			if (people && !isNaN(people) && people > 1) {
-				$("#rsvp-message").append($("<br/>Thank you for your RSVP with " + people + " people.<br/>").fadein(300));
+				$("#rsvp-message").append($("<br/>Thank you for your RSVP with " + people + " people.<br/>"));
 			} else {
-				$("#rsvp-message").append($("<br/>Thank you for your RSVP.<br/>").fadein(300));
+				$("#rsvp-message").append($("<br/>Thank you for your RSVP.<br/>"));
 			}
 			$("#name").val("");
 			$("#email").val("");
 			$("#people").val("");
 		}).error(function (jqXhr, textStatus, errorMessage) {
-			$("#rsvp-message").append($("<br/>Error: " + errorMessage + "<br/>").fadein(300));
+			$("#rsvp-message").append($("<br/>Error: " + errorMessage + "<br/>"));
 		});
 	});
 
@@ -221,11 +221,11 @@
 			url: './php/postguestbook.php',
 			data: {name: name, message: message}
 		}).success(function () {
-			$("#wishes-message").append($("<br/>Thank you for your message.<br/>").fadein(300));
+			$("#wishes-message").append($("<br/>Thank you for your message.<br/>"));
 			$("#namewishes").val("");
 			$("#message").val("");
 		}).error(function (jqXhr, textStatus, errorMessage) {
-			$("#wishes-message").append($("<br/>Error: " + errorMessage + "<br/>").fadein(300));
+			$("#wishes-message").append($("<br/>Error: " + errorMessage + "<br/>"));
 		});
 	});
 

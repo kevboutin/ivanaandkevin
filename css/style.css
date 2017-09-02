@@ -1494,6 +1494,16 @@ form label {
   transform: rotate(-180deg);
 }
 
+#rsvp-message {
+	color: #fff;
+	font-weight: 900;
+}
+
+#wishes-message {
+	color: #333;
+	font-weight: 900;
+}
+
 .uppercase {
   font-size: 14px;
   color: #000;

@@ -60,7 +60,7 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 		exit;
 	}
 
-	fwrite($fp, 'rsvp {"name": "'.$name.'", "email": "'.$email.'", "attendees": '.$attendees.'}');
+	fwrite($fp, 'rsvp {"name": "'.$name.'", "email": "'.$email.'", "attendees": '.$attendees.'}'. PHP_EOL);
 	flock($fp, 3);
 	fclose($fp);
 

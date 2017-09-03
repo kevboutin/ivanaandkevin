@@ -1201,6 +1201,7 @@ form label {
 
 #iak-testimonial .wrap-testimony {
   position: relative;
+  margin-top: 4em;
 }
 #iak-testimonial .wrap-testimony .testimony-slide {
   text-align: center;
@@ -1342,7 +1343,7 @@ form label {
   color: rgba(255, 255, 255, 0.5);
 }
 .iak-heading p.no-alpha {
-  color: rgba(255, 255, 255, 1.0);
+  color: rgba(255, 255, 255, 1.0) !important;
 }
 #iak-started .form-control {
   background: rgba(255, 255, 255, 0.2);
@@ -1392,6 +1393,18 @@ form label {
 }
 #iak-started .iak-heading h2 {
   margin-bottom: 0;
+}
+
+.btn-form {
+	height: 54px;
+	border: none!important;
+	background: #f6a170;
+	color: #fff;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 400;
+	/*padding-left: 50px;
+padding-right: 50px;*/
 }
 
 @media screen and (max-width: 768px) {

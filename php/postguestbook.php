@@ -48,7 +48,7 @@ if (isset($_POST['name']) && (isset($_POST['message']))) {
 		exit;
 	}
 
-	fwrite($fp, 'wishes {"name": "'.$name.'", "message": "'.$message.'"}');
+	fwrite($fp, 'wishes {"name": "'.$name.'", "message": "'.$message.'"}'. PHP_EOL);
 	flock($fp, 3);
 	fclose($fp);
 

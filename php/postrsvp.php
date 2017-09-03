@@ -41,9 +41,7 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 		$errors .= 'Email is not valid. ';
 	}
 
-	if (empty($errors)) {
-		echo '{"status": "success"}';
-	} else {
+	if (!empty($errors)) {
 		echo '{"status": "error", "errors": "' . $errors . '"}';
 		exit;
 	}
@@ -55,14 +53,15 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 
 	if (!$fp)
 	{
-		echo '<p><strong> Your Addition to the RSVP list could not be processed at this time. '
-			. 'Please try again in a few minutes.</strong></p>';
+		echo '{"status": "error", "errors": "Your Addition to the RSVP list could not be processed at this time. '
+			. 'Please try again in a few minutes."}';
 		exit;
 	}
 
 	fwrite($fp, 'rsvp {"name": "'.$name.'", "email": "'.$email.'", "attendees": '.$attendees.'}'. PHP_EOL);
 	flock($fp, 3);
 	fclose($fp);
+	echo '{"status": "success"}';
 
 	$sql1 = "INSERT INTO iandk_rsvp(name, email, attendees, created, updated) VALUES ('" . $name . "', '" . $email .
 		"', ". $attendees . ", NOW(), NOW()) ON DUPLICATE KEY UPDATE updated=NOW(), attendees=". $attendees .

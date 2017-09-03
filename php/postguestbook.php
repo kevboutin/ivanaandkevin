@@ -29,9 +29,7 @@ if (isset($_POST['name']) && (isset($_POST['message']))) {
 		$errors .= 'Message is too long. ';
 	}
 
-	if (empty($errors)) {
-		echo '{"status": "success"}';
-	} else {
+	if (!empty($errors)) {
 		echo '{"status": "error", "errors": "' . $errors . '"}';
 		exit;
 	}
@@ -43,14 +41,15 @@ if (isset($_POST['name']) && (isset($_POST['message']))) {
 
 	if (!$fp)
 	{
-		echo '<p><strong> Your Addition to the Guestbook could not be processed at this time. '
-			. 'Please try again in a few minutes.</strong></p>';
+		echo '{"status": "error", "errors": "Your Addition to the Guestbook could not be processed at this time. '
+			. 'Please try again in a few minutes."}';
 		exit;
 	}
 
 	fwrite($fp, 'wishes {"name": "'.$name.'", "message": "'.$message.'"}'. PHP_EOL);
 	flock($fp, 3);
 	fclose($fp);
+	echo '{"status": "success"}';
 
 	$sql1 = "INSERT INTO iandk_wishes(name, platform, message, created, updated) VALUES ('" . $name . "', 'web', '".
 		$message . "', NOW(), NOW())";

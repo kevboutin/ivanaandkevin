@@ -190,20 +190,26 @@
 		var name = $('#name').val();
 		var email = $('#email').val();
 		var people = $('#people').val();
+		jQuery.support.cors = true;
 
 		$.ajax({
 			method: 'POST',
 			url: './php/postrsvp.php',
 			data: {name: name, email: email, attendees: people}
-		}).success(function () {
-			if (people && !isNaN(people) && people > 1) {
-				$("#rsvp-message").append($("<br/>Thank you for your RSVP with " + people + " people.<br/>"));
+		}).success(function (response) {
+			if (response.status === 'success') {
+				if (people && !isNaN(people) && people > 1) {
+					$("#rsvp-message").append($("<br/>Thank you for your RSVP with " + people + " people.<br/>"));
+				} else {
+					$("#rsvp-message").append($("<br/>Thank you for your RSVP.<br/>"));
+				}
+				$("#name").val("");
+				$("#email").val("");
+				$("#people").val("");
 			} else {
-				$("#rsvp-message").append($("<br/>Thank you for your RSVP.<br/>"));
+				var data = $.parseJSON(response);
+				$("#rsvp-message").append($("<br/>" + data.errors + "<br/>"));
 			}
-			$("#name").val("");
-			$("#email").val("");
-			$("#people").val("");
 		}).error(function (jqXhr, textStatus, errorMessage) {
 			$("#rsvp-message").append($("<br/>Error: " + errorMessage + "<br/>"));
 		});
@@ -215,6 +221,7 @@
 		$("#wishes-message").empty();
 		var name = $('#namewishes').val();
 		var message = $('#message').val();
+		jQuery.support.cors = true;
 
 		$.ajax({
 			method: 'POST',

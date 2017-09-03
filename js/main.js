@@ -197,7 +197,8 @@
 			url: './php/postrsvp.php',
 			data: {name: name, email: email, attendees: people}
 		}).success(function (response) {
-			if (response.status === 'success') {
+			var data = $.parseJSON(response);
+			if (data.status === 'success') {
 				if (people && !isNaN(people) && people > 1) {
 					$("#rsvp-message").append($("<br/>Thank you for your RSVP with " + people + " people.<br/>"));
 				} else {
@@ -207,7 +208,6 @@
 				$("#email").val("");
 				$("#people").val("");
 			} else {
-				var data = $.parseJSON(response);
 				$("#rsvp-message").append($("<br/>" + data.errors + "<br/>"));
 			}
 		}).error(function (jqXhr, textStatus, errorMessage) {

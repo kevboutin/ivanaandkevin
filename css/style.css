@@ -1341,6 +1341,9 @@ form label {
 #iak-started .iak-heading p {
   color: rgba(255, 255, 255, 0.5);
 }
+.iak-heading p.no-alpha {
+  color: rgba(255, 255, 255, 1.0);
+}
 #iak-started .form-control {
   background: rgba(255, 255, 255, 0.2);
   border: none !important;

@@ -495,7 +495,6 @@ h1, h2, h3, h4, h5, h6, figure {
 
 }
 
-
 #iak-counter {
 	height: 600px;
 	@media screen and (max-width: $screen-sm) {
@@ -1318,7 +1317,10 @@ form {
 		h2 {
 			color: $brand-white;
 		}
-		p{
+		p.no-alpha {
+			color: rgba($brand-white,1.0);
+		}
+		p {
 			color: rgba($brand-white,.5);
 		}
 	}

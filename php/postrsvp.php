@@ -73,7 +73,10 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 	$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
 	$headers .= 'From: kevin@ivanaandkevin.com'."\r\n";
 	$headers .= 'Reply-To: kevin@ivanaandkevin.com';
-	$body = '<html><body>Hello ' . $name . '.<br/><br/>Thank you for your RSVP of 1 person. ';
+	$body = '<html><head><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>';
+	$body .= '<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700" '
+		. 'rel="stylesheet" type="text/css"/></head><body>';
+	$body .= 'Hello ' . $name . '.<br/><br/>Thank you for your RSVP of 1 person. ';
 	if ($attendees > 1) {
 		$body = 'Hello ' . $name . '.<br/><br/>Thank you for your RSVP of ' . $attendees . ' persons. ';
 	}

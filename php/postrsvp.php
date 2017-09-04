@@ -69,5 +69,17 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 
 	$result1 = mysqli_query($conn, $sql1) or die ("Unable to save RSVP values of " . $email . ", " . $name . " and "
 		. $attendees);
+
+	$headers = 'From: me@kevinboutin.me \r\n';
+	$headers .= 'Reply-To: me@kevinboutin.me \r\n';
+	$headers .= 'Content-type: text/plain; charset=utf-8\r\n';
+	$body = 'Hello ' . $name . '.\r\n\r\nThank you for your RSVP of 1 person. ';
+	if ($attendees > 1) {
+		$body = 'Hello ' . $name . '.\r\n\r\nThank you for your RSVP of ' . $attendees . ' persons. ';
+	}
+	$body .= '\r\n\r\nYou can resubmit another RSVP if you need to change the number of people or reply to this email '
+		. 'with any changes.\n\nThank you for your interest and we appreciate your attendance on our special day. '
+		. '\r\n\r\n-Ivana and Kevin\n';
+	mail($email, 'Your RSVP to the Ivana Massud and Kevin Boutin wedding', $body, $headers);
 }
 ?>

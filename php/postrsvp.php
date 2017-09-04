@@ -61,7 +61,6 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 	fwrite($fp, 'rsvp {"name": "'.$name.'", "email": "'.$email.'", "attendees": '.$attendees.'}'. PHP_EOL);
 	flock($fp, 3);
 	fclose($fp);
-	echo '{"status": "success"}';
 
 	$sql1 = "INSERT INTO iandk_rsvp(name, email, attendees, created, updated) VALUES ('" . $name . "', '" . $email .
 		"', ". $attendees . ", NOW(), NOW()) ON DUPLICATE KEY UPDATE updated=NOW(), attendees=". $attendees .
@@ -70,16 +69,18 @@ if (isset($_POST['name']) && (isset($_POST['email'])) && (isset($_POST['attendee
 	$result1 = mysqli_query($conn, $sql1) or die ("Unable to save RSVP values of " . $email . ", " . $name . " and "
 		. $attendees);
 
-	$headers = 'From: me@kevinboutin.me \r\n';
-	$headers .= 'Reply-To: me@kevinboutin.me \r\n';
-	$headers .= 'Content-type: text/plain; charset=utf-8\r\n';
-	$body = 'Hello ' . $name . '.\r\n\r\nThank you for your RSVP of 1 person. ';
+	$headers = 'MIME-Version: 1.0'."\r\n";
+	$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
+	$headers .= 'From: kevin@ivanaandkevin.com'."\r\n";
+	$headers .= 'Reply-To: kevin@ivanaandkevin.com';
+	$body = '<html><body>Hello ' . $name . '.<br/><br/>Thank you for your RSVP of 1 person. ';
 	if ($attendees > 1) {
-		$body = 'Hello ' . $name . '.\r\n\r\nThank you for your RSVP of ' . $attendees . ' persons. ';
+		$body = 'Hello ' . $name . '.<br/><br/>Thank you for your RSVP of ' . $attendees . ' persons. ';
 	}
-	$body .= '\r\n\r\nYou can resubmit another RSVP if you need to change the number of people or reply to this email '
-		. 'with any changes.\n\nThank you for your interest and we appreciate your attendance on our special day. '
-		. '\r\n\r\n-Ivana and Kevin\n';
-	mail($email, 'Your RSVP to the Ivana Massud and Kevin Boutin wedding', $body, $headers);
+	$body .= '<br/><br/>You can resubmit another RSVP if you need to change the number of people.<br/><br/>Thank you '
+		. 'for your interest and we appreciate your attendance on our special day. '
+		. '<br/><br/>-Ivana and Kevin<br/><br/>kevin@ivanaandkevin.com</body></html>';
+	$success = mail($email, 'Your RSVP to the Ivana Massud and Kevin Boutin wedding', $body, $headers);
+	echo '{"status": "success", "message": ' . $success . '}';
 }
 ?>

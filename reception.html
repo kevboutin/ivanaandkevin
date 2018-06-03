@@ -106,11 +106,10 @@
 	gallery.init();
 
 	// Gallery starts closing
-	gallery.listen('close', function() {gallery.init()});
-
-	// After gallery is closed and closing animation finished.
-	// Clean up your stuff here.
-	gallery.listen('destroy', function() {gallery.init()});
+	gallery.listen('close', function() {
+		// gallery.goTo(0);
+		window.open("http://ivanaandkevin.com/#gallery");
+	});
 </script>
 
 </body>
